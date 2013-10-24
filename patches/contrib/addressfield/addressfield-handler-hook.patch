@@ -1,7 +1,7 @@
-diff --git a/addressfield.module b/var/www/kickstart/profiles/kickstart/modules/contrib/addressfield/addressfield.module
+diff --git a/addressfield.module b/addressfield.module
 index 7ea844e..fd6b529 100644
 --- a/addressfield.module
-+++ b/var/www/kickstart/profiles/kickstart/modules/contrib/addressfield/addressfield.module
++++ b/addressfield.module
 @@ -118,6 +118,17 @@ function addressfield_generate($address, array $handlers, array $context = array
      if ($callback = ctools_plugin_load_function('addressfield', 'format', $handler, 'format callback')) {
        $callback($format, $address, $context);
