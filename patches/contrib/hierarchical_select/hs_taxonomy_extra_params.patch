@@ -1,0 +1,28 @@
+diff --git a/modules/hs_taxonomy.module b/modules/hs_taxonomy.module
+index 2fc3fb4..4ce275b 100644
+--- a/modules/hs_taxonomy.module
++++ b/modules/hs_taxonomy.module
+@@ -568,7 +568,10 @@ function hs_taxonomy_hierarchical_select_params() {
+ function hs_taxonomy_hierarchical_select_root_level($params) {
+   // TODO: support multiple parents, i.e. support "save lineage".
+   $vocabulary = taxonomy_vocabulary_load($params['vid']);
+-  $terms = _hs_taxonomy_hierarchical_select_get_tree($params['vid'], 0, -1, 1);
++
++  // Allow a parent lower in the tree to be selected as visual parent.
++  $parent = isset($params['parent_item']) ? $params['parent_item'] : 0;
++  $terms = _hs_taxonomy_hierarchical_select_get_tree($params['vid'], $parent, -1, 1);
+
+   // If the root_term parameter is enabled, then prepend a fake "<root>" term.
+   if (isset($params['root_term']) && $params['root_term'] === TRUE) {
+@@ -608,6 +611,11 @@ function hs_taxonomy_hierarchical_select_children($parent, $params) {
+     return array();
+   }
+
++  // When a specified depth was reached, ignore all lower children.
++  if(key_exists('depth', $params) && count(taxonomy_get_parents_all($parent)) == $params['depth']) {
++    return array();
++  }
++
+   $terms = taxonomy_get_children($parent, $params['vid']);
+
+   // Unset the term that's being excluded, if it is among the children.
