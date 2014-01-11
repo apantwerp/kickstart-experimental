@@ -1,13 +1,12 @@
 diff --git a/fillpdf.module b/fillpdf.module
-index a0698b7..ecc6f24 100644
+index ecc6f24..8409f30 100644
 --- a/fillpdf.module
 +++ b/fillpdf.module
-@@ -401,7 +401,7 @@ function fillpdf_merge_pdf($fid, $nids = NULL, $webform_arr = NULL, $sample = NU
+@@ -400,6 +400,7 @@ function fillpdf_merge_pdf($fid, $nids = NULL, $webform_arr = NULL, $sample = NU
+   $context = array(
      'nodes' => $nodes,
      'webforms' => $webforms,
++    'form' => $fillpdf_info,
    );
--  drupal_alter('fillpdf_merge_fields_alter', $fields, $context);
-+  drupal_alter('fillpdf_merge_fields', $fields, $context);
+   drupal_alter('fillpdf_merge_fields', $fields, $context);
  
-   $pdf_data = _fillpdf_get_file_contents($fillpdf_info->url, "<front>");
-   switch (variable_get('fillpdf_service')) {
