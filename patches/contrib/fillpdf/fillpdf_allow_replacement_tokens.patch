@@ -1,0 +1,22 @@
+diff --git a/fillpdf.rules.inc b/fillpdf.rules.inc
+index 88ac4a4..3098a7c 100644
+--- a/fillpdf.rules.inc
++++ b/fillpdf.rules.inc
+@@ -75,7 +75,7 @@ function fillpdf_rules_action_info() {
+       ),
+       'parameter' => array(
+         'fid' => array(
+-          'type' => 'integer',
++          'type' => 'text',
+           'label' => t('Fill PDF Form ID'),
+         )
+       ),
+@@ -97,7 +97,7 @@ function fillpdf_rules_action_info() {
+           'description' => t('If you leave this blank, the <em>Default Node ID</em> from the Fill PDF configuration will be used.'),
+         ),
+         'webform_sids' => array(
+-          'type' => 'list<integer>',
++          'type' => 'list<text>',
+           'label' => t('Webform Submission ID(s)'),
+           'optional' => TRUE,
+           'description' => t('If you leave this blank, the most recent submission will be used. The last ID you specify will be checked first.'),
